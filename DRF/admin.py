@@ -15,13 +15,25 @@ class DiretorAdmin(GenericAdmin):
 
 admin.site.register(Diretor, DiretorAdmin)
 
+class CadeirasCadastradasInline(admin.TabularInline):
+    model = Cadeira
+    
 class ProfessorAdmin(GenericAdmin):
+    inlines = [
+        CadeirasCadastradasInline,
+    ]
     list_display = ('id', 'nome', 'email', 'data_nascimento', 'cpf', 'endereco', 'status', 'cadeiras_cadastradas',)
 
 admin.site.register(Professor, ProfessorAdmin)
 
+class CadeirasEscritasInline(admin.TabularInline):
+    model = Cadeira.alunos.through
+
 class AlunoAdmin(GenericAdmin):
-    list_display = ('id', 'nome', 'email', 'data_nascimento', 'cpf', 'endereco', 'status', 'cadeiras_matriculadas',)
+    inlines = [
+        CadeirasEscritasInline
+    ]
+    list_display = ('id', 'nome', 'email', 'data_nascimento', 'cpf', 'endereco', 'status', 'cadeiras_escritas')
 
 admin.site.register(Aluno, AlunoAdmin)
 
