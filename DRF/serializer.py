@@ -2,21 +2,21 @@ from rest_framework import serializers
 from DRF.models import Diretor, Professor, Aluno, Cadeira
 
 class DiretorSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Diretor
-        fields = ['id', 'nome', 'email', 'cpf', 'endereco', 'status']
+        fields = '__all__'
 
 class ProfessorSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Professor
         fields = ['id', 'nome', 'email', 'cpf', 'endereco', 'status', 'cadeiras_cadastradas']
 
 class AlunoSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Aluno
         fields = ['id', 'nome', 'email', 'cpf', 'endereco', 'status', 'cadeiras_escritas']
 
 class CadeiraSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Cadeira
-        fields = ['id', 'professor', 'horario', 'limite_de_alunos', 'noticias']
+        exclude = ['alunos',]

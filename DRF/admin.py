@@ -2,7 +2,7 @@ from django.contrib import admin
 from DRF.models import Diretor, Professor, Aluno, Cadeira
 
 class GenericAdmin(admin.ModelAdmin):
-    class meta:
+    class Meta:
         abstract = True
     
     list_display = ('id', 'nome', 'email', 'data_nascimento', 'cpf', 'endereco', 'status',)

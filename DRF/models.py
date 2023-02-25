@@ -1,7 +1,7 @@
 from django.db import models
 
 class Associado(models.Model):
-    class meta:
+    class Meta:
         abstract = True
 
     nome = models.CharField(max_length=50)
@@ -20,6 +20,7 @@ class Diretor(Associado):
 class Professor(Associado):
     pass
 
+
 # FIXME: Implementar campo foto
 class Aluno(Associado):
     # foto = models.ImageField()
@@ -36,5 +37,5 @@ class Cadeira(models.Model):
     # entrega_de_prova = models.FileField()
     noticias = models.TextField()
     # material_de_alunos = models.FileField()
-    alunos = models.ManyToManyField(Aluno, related_name='cadeiras_escritas')
+    alunos = models.ManyToManyField(Aluno, related_name='cadeiras_escritas', null=True, blank=True)
     
